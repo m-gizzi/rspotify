@@ -23,17 +23,17 @@ module RSpotify
     #           tracks = RSpotify::Base.find(ids, 'track')
     #           tracks.class       #=> Array
     #           tracks.first.class #=> RSpotify::Track
-    def self.find(ids, type, market: nil)
+    def self.find(ids, type, market: nil, raw_response: false)
       case ids
       when Array
         if type == 'user'
           warn 'Spotify API does not support finding several users simultaneously'
           return false
         end
-        find_many(ids, type, market: market)
+        find_many(ids, type, market: market, raw_response: raw_response)
       when String
         id = ids
-        find_one(id, type, market: market)
+        find_one(id, type, market: market, raw_response: raw_response)
       end
     end
 

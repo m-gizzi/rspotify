@@ -23,8 +23,8 @@ class Show < Base
     #           show = RSpotify::Show.find('3Z6JdCS2d0eFEpXHKI6WqH')
     #           show.class #=> RSpotify::Show
     #           show.name  #=> "Consider This from NPR"
-    def self.find(ids, market: nil )
-      super(ids, 'show', market: market)
+    def self.find(ids, market: nil, raw_response: false)
+      super(ids, 'show', market: market, raw_response: raw_response)
     end
     
     # Returns array of Show objects matching the query. It's also possible to find the total number of search results for the query
