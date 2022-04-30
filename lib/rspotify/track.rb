@@ -32,8 +32,8 @@ module RSpotify
     #           tracks = RSpotify::Base.find(ids, 'track')
     #           tracks.class       #=> Array
     #           tracks.first.class #=> RSpotify::Track
-    def self.find(ids, market: nil)
-      super(ids, 'track', market: market)
+    def self.find(ids, market: nil, raw_response: false)
+      super(ids, 'track', market: market, raw_response: raw_response)
     end
 
     # Returns array of Track objects matching the query, ordered by popularity. It's also possible to find the total number of search results for the query

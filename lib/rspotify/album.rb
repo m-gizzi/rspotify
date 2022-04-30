@@ -30,8 +30,8 @@ module RSpotify
     #           albums = RSpotify::Album.find(ids)
     #           albums.class       #=> Array
     #           albums.first.class #=> RSpotify::Album
-    def self.find(ids, market: nil)
-      super(ids, 'album', market: market)
+    def self.find(ids, market: nil, raw_response: false)
+      super(ids, 'album', market: market, raw_response: raw_response)
     end
 
     # Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab).
