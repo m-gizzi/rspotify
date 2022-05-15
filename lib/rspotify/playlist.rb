@@ -293,7 +293,7 @@ module RSpotify
     # Remove one or more tracks from a user’s playlist. Removing from a public playlist requires the
     # *playlist-modify-public* scope; removing from a private playlist requires the *playlist-modify-private* scope.
     #
-    # @param tracks [Array<Track,Hash>, Array<Integer>] Tracks to be removed. Maximum: 100 per request
+    # @param tracks [Array<Track,Hash>, Array<Integer>, Array<String>] Tracks to be removed. Maximum: 100 per request
     # @param snapshot_id [String] Optional. The playlist's snapshot ID against which you want to make the changes.
     # @return [Playlist]
     #
@@ -314,6 +314,7 @@ module RSpotify
 
       tracks = tracks.map do |track|
         next { uri: track.uri } if track.is_a? Track
+        next { uri: track } if track.is_a? String
         {
           uri: track[:track].uri,
           positions: track[:positions]
