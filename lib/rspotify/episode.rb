@@ -34,7 +34,7 @@ module RSpotify
     #           episodes.class       #=> Array
     #           episodes.first.class #=> RSpotify::Episode
     def self.find(ids, market: nil, raw_response: false)
-      super(ids, 'episode', market: market, raw_response)
+      super(ids, 'episode', market: market, raw_response: raw_response)
     end
 
     # Returns array of Episode objects matching the query. It's also possible to find the total number of search results for the query
