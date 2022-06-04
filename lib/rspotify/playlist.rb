@@ -330,7 +330,14 @@ module RSpotify
 
       params[:payload][:snapshot_id] = snapshot_id if snapshot_id
       params[:payload] = params[:payload].to_json
-      response = RestClient::Request.execute(params)
+      begin
+        response = RestClient::Request.execute(params)
+      rescue RestClient::Unauthorized => e
+        raise e if e.response !~ /access token expired/
+        User.send(:refresh_token, @owner.id)
+        params[:headers] = User.send(:oauth_header, @owner.id)
+        response = RestClient::Request.execute(params)
+      end
 
       @snapshot_id = JSON.parse(response)['snapshot_id']
       @tracks_cache = nil
